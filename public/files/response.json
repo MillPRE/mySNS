@@ -1,0 +1,45 @@
+{
+	"status": 200,
+	"message": "",
+	"result": true,
+	"data": {
+		"title": "stories",
+		"contents": [
+			{
+				"userName": "minraum",
+				"location": "Yongsan",
+				"imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Braum.png?image=c_scale,q_auto,w_140&v=1632277051",
+				"content": "브라움 개꿀이넹",
+				"likeCount": 324
+			},
+			{
+				"userName": "vip_ian",
+				"location": "suwon",
+				"imageUrl": "https://www.mcdonalds.co.kr/upload/main/card/1621833597484.png",
+				"content": "JMT",
+				"likeCount": 0
+			},
+			{
+				"userName": "seungheunh",
+				"location": "",
+				"imageUrl": "https://img.hankyung.com/photo/202105/01.26415565.1.jpg",
+				"content": "맥주맛있넹",
+				"likeCount": 5233
+			},
+			{
+				"userName": "g_gangho",
+				"location": "yeongju",
+				"imageUrl": "http://apple.yctf.or.kr/theme/yctf/img/poster/2020.jpg",
+				"content": "",
+				"likeCount": 124
+			},
+			{
+				"userName": "s_han2",
+				"location": "논산 훈련소",
+				"imageUrl": "",
+				"content": "아 군대 줫같네",
+				"likeCount": 234
+			}
+		]
+	}
+}
