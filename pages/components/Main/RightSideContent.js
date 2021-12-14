@@ -6,7 +6,7 @@ function RightSideContent({contents, view, setViewContent}){
 
     return(
         <div className={styles.rightSideContainer}>
-            <ViewRight view={view}/>
+            <ViewRight view={view} contents={contents}/>
         </div>
     )
 }

@@ -4,12 +4,9 @@ import RightSideContent from "./RightSideContent";
 import {useEffect, useState} from "react";
 
 
-
-function MainContainer({ contents }) {
-    const [ select , setSelect ] = useState("");
+function MainContainer( {contents, length}) {
 
     const [ view, setRightView ] = useState("");
-
 
     return(
         <>

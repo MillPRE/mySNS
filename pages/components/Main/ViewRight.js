@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import styles from '../../../styles/Main.module.css'
+import {useEffect, useState} from "react";
 
 const Title = styled.h1`
     font-size : 30px;
@@ -64,44 +65,101 @@ const defaultView = (
     </div>
 )
 
-const userView = ({title, content, imageUrl, likeCount, location}) => {
-
-    return (
-        <>
-            <div className={styles.ViewContainer}>
-                <ViewHeader>
-                    <Title>{title}</Title>
-                </ViewHeader>
-
-                <ViewContent>
-
-                    {/* Image */}
-                    <UserImage src={imageUrl} alt={"User Image"}/>
-
-                    {/* likeCount */}
-                    <LikeCountContainer>
-                        <img src={'./Heart.jpg'} alt={"heart image"} width={20} height={20}/>
-                        <LikeCountTag>{likeCount}</LikeCountTag>
-                    </LikeCountContainer>
-
-                    {/* Content */}
-                    <Content>
-                        Content : {content}
-                    </Content>
-
-                    {/* location */}
-                    <Content>
-                        Location : {location}
-                    </Content>
-                </ViewContent>
+/* like button */
+const LikeButton = styled.button`
+  margin : 10px;
+  font-weight: 600;
+  width : 60px;
+  
+`;
 
 
-            </div>
-        </>
-    )
+/* unlike button */
+const UnlikeButton = styled.button`
+  margin : 10px;
+  font-weight: 600;
+  width : 60px;
+  
+`;
+
+const userView = ({title, content, imageUrl, likeCount, location, index, like, setLike}) => {
+
+    if(true){
+        return (
+            <>
+                <div className={styles.ViewContainer}>
+                    <ViewHeader>
+                        <Title>{title}</Title>
+                    </ViewHeader>
+
+                    <ViewContent>
+
+                        {/* Image */}
+                        <UserImage src={imageUrl} alt={"User Image"}/>
+
+                        {/* likeCount */}
+                        <LikeCountContainer>
+                            <img src={'./Heart.jpg'} alt={"heart image"} width={20} height={20}/>
+                            <LikeCountTag>{likeCount}</LikeCountTag><br/>
+                            <LikeButton>Like</LikeButton>
+                        </LikeCountContainer>
+
+                        {/* Content */}
+                        <Content>
+                            Content : {content}
+                        </Content>
+
+                        {/* location */}
+                        <Content>
+                            Location : {location}
+                        </Content>
+                    </ViewContent>
+
+
+                </div>
+            </>
+        )
+    }
+    else{
+        return (
+            <>
+                <div className={styles.ViewContainer}>
+                    <ViewHeader>
+                        <Title>{title}</Title>
+                    </ViewHeader>
+
+                    <ViewContent>
+
+                        {/* Image */}
+                        <UserImage src={imageUrl} alt={"User Image"}/>
+
+                        {/* likeCount */}
+                        <LikeCountContainer>
+                            <img src={'./Heart.jpg'} alt={"heart image"} width={20} height={20}/>
+                            <LikeCountTag>{likeCount}</LikeCountTag><br/>
+                            <UnlikeButton>Unlike</UnlikeButton>
+                        </LikeCountContainer>
+
+                        {/* Content */}
+                        <Content>
+                            Content : {content}
+                        </Content>
+
+                        {/* location */}
+                        <Content>
+                            Location : {location}
+                        </Content>
+                    </ViewContent>
+
+
+                </div>
+            </>
+        )
+    }
+
 }
 
-function ViewRight({view}){
+function ViewRight({view, contents}){
 
         /* user info */
     const title = view.userName;
@@ -109,6 +167,9 @@ function ViewRight({view}){
     let imageUrl = view.imageUrl;
     const likeCount = view.likeCount;
     const location = view.location;
+    let index = 0;
+    let defaultArray = [];
+    const [ like, setLike ] = useState([]);
 
 
     if(Object.keys(view).length===0){
@@ -119,16 +180,17 @@ function ViewRight({view}){
         )
 
     }else{
+
         if(imageUrl === ""){
             imageUrl = './defaultImage.jpg';
 
             return(
-                userView({title, content, imageUrl, likeCount, location})
+                userView({title, content, imageUrl, likeCount, location, index,})
             )
         }
         else{
             return(
-                userView({title, content, imageUrl, likeCount, location})
+                userView({title, content, imageUrl, likeCount, location, index})
             )
         }
     }

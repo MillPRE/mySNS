@@ -45,8 +45,7 @@ export default function Home() {
           <Header title={users.title}/>
 
           {/* Main */}
-          <MainContainer contents={users.contents}>
-
+          <MainContainer contents={users.contents} length={users.contents.length}>
           </MainContainer>
 
           {/* footer */}
