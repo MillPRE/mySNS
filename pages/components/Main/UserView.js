@@ -1,5 +1,6 @@
 import styles from "../../../styles/Main.module.css";
 import styled from 'styled-components';
+import {useEffect} from "react";
 
 const Title = styled.h1`
     font-size : 30px;
@@ -67,33 +68,21 @@ const LikeButton = styled.button`
   
 `;
 
-function onClickLikeButton({index, data, setRightView,like, setLike}){
-    let temp = data;
-    let tmp = like;
+function onClickLikeButton(index, data, setRightView,like, setLike){
+    let localData = data;
+    let localLike = [...like];
 
-    console.log("onClickLikeButton index", index);
-    console.log("\n");
-    console.log("onClickLikeButton like", like);
-    console.log("\n");
-    console.log("onClickLikeButton tmp", tmp);
-    console.log("\n");
-    console.log("onClickLikeButton temp", temp);
-
-
-    if(tmp[index] === false){
-        temp.likeCount += 1;
-        tmp[index] = true;
+    if (localLike[index] === false) {
+        localData.likeCount += 1;
+        localLike[index] = true;
     }
-    else{
-        temp.likeCount -= 1;
-        tmp[index] = false;
+    else {
+        localData.likeCount -= 1;
+        localLike[index] = false;
     }
 
-    console.log("tmp", tmp);
-    console.log("temp", temp);
-
-    setRightView(temp);
-    setLike(tmp);
+    setRightView(localData);
+    setLike(localLike);
 }
 
 
@@ -111,17 +100,19 @@ function UserView({data, title, content, imageUrl, likeCount, location, index, l
 
                 {/* likeCount */}
                 <LikeCountContainer>
-                    {
-                        like[index] === false
-                            ? <img src={'./img/emptyHeart.png'} alt={"heart image"} width={20} height={20}/>
-                            : <img src={'./img/Heart.png'} alt={"heart image"} width={20} height={20}/>
-                    }
-
+                    <img
+                      src={like[index] ? './img/Heart.png' : './img/emptyHeart.png'}
+                      alt={"heart icon"}
+                      width={20}
+                      height={20}
+                    />
                     <LikeCountTag>{likeCount}</LikeCountTag>
-                    {
-                        like[index] === false
-                            ? <LikeButton onClick={()=>onClickLikeButton({index, data, setRightView,like, setLike})} >like</LikeButton> : <LikeButton onClick={onClickLikeButton} >unLike</LikeButton>
-                    }
+                            <LikeButton
+                              onClick={
+                                  () => {onClickLikeButton(index, data, setRightView,like, setLike)}
+                              }
+                            >{like[index] ? "unLike" : "like"}
+                            </LikeButton>
                 </LikeCountContainer>
 
                 {/* Content */}

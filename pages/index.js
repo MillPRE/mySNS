@@ -33,7 +33,7 @@ export default function Home() {
     useEffect(() => {
         fetch('/files/response.json')
                 .then(res => res.json())
-                .then(res => setUsers(()=>res.data));
+                .then(res => setUsers(() => res.data));
     },[]);
 
 
@@ -46,8 +46,7 @@ export default function Home() {
           <Header title={users.title}/>
 
           {/* Main */}
-          <MainContainer contents={users} length={users.contents.length}>
-          </MainContainer>
+          <MainContainer contents={users} length={users.contents.length} />
 
           {/* footer */}
           <Footer footerInfo={footerDefaultProps}/>
