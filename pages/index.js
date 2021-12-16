@@ -35,7 +35,7 @@ export default function Home() {
                 .then(res => res.json())
                 .then(res => setUsers(()=>res.data));
     },[]);
-
+    /* 이후 user 값 변경하면 안됨.*/
 
     return (
       <div className={styles.Container}>
@@ -46,7 +46,7 @@ export default function Home() {
           <Header title={users.title}/>
 
           {/* Main */}
-          <MainContainer contents={users} length={users.contents.length}>
+          <MainContainer contents={users} setContents={setUsers} length={users.contents.length}>
           </MainContainer>
 
           {/* footer */}

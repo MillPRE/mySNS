@@ -67,76 +67,104 @@ const LikeButton = styled.button`
   
 `;
 
-function onClickLikeButton({index, data, setRightView,like, setLike}){
-    let temp = data;
-    let tmp = like;
-
-    console.log("onClickLikeButton index", index);
-    console.log("\n");
-    console.log("onClickLikeButton like", like);
-    console.log("\n");
-    console.log("onClickLikeButton tmp", tmp);
-    console.log("\n");
-    console.log("onClickLikeButton temp", temp);
-
-
-    if(tmp[index] === false){
-        temp.likeCount += 1;
-        tmp[index] = true;
-    }
-    else{
-        temp.likeCount -= 1;
-        tmp[index] = false;
-    }
-
-    console.log("tmp", tmp);
-    console.log("temp", temp);
-
-    setRightView(temp);
-    setLike(tmp);
-}
-
-
-function UserView({data, title, content, imageUrl, likeCount, location, index, like, setLike, setRightView}){
-    return (
+function FalseView({view, setView}){
+    return(
         <div className={styles.ViewContainer}>
             <ViewHeader>
-                <Title>{title}</Title>
+                <Title>{view.title}</Title>
             </ViewHeader>
 
             <ViewContent>
 
                 {/* Image */}
-                <UserImage src={imageUrl} alt={"User Image"}/>
+                <UserImage src={view.imageUrl} alt={"User Image"}/>
 
                 {/* likeCount */}
                 <LikeCountContainer>
-                    {
-                        like[index] === false
-                            ? <img src={'./img/emptyHeart.png'} alt={"heart image"} width={20} height={20}/>
-                            : <img src={'./img/Heart.png'} alt={"heart image"} width={20} height={20}/>
-                    }
-
-                    <LikeCountTag>{likeCount}</LikeCountTag>
-                    {
-                        like[index] === false
-                            ? <LikeButton onClick={()=>onClickLikeButton({index, data, setRightView,like, setLike})} >like</LikeButton> : <LikeButton onClick={onClickLikeButton} >unLike</LikeButton>
-                    }
+                    <img src={'./img/emptyHeart.png'} alt={"heart image"} width={20} height={20}/>
+                    <LikeCountTag>{view.likeCount}</LikeCountTag>
+                    <LikeButton onClick={()=>onClickLikeButton(view,setView)} >like</LikeButton>
                 </LikeCountContainer>
 
                 {/* Content */}
                 <Content>
-                    Content : {content}
+                    Content : {view.content}
                 </Content>
 
                 {/* location */}
 
                 <Content>
-                    Location : {location}
+                    Location : {view.location}
                 </Content>
             </ViewContent>
+        </div>
+    )
+}
+
+function onClickLikeButton(view,setView) {
+    let tempView = view;
+    if( view.like === false ){
+    //    like button 누름.
+        tempView.like = true;
+        tempView.likeCount += 1;
+    }
+    else{
+    //    unlike button 누름
+        tempView.like = false;
+        tempView.likeCount -= 1;
+    }
+
+    setView({...tempView});
+
+}
 
 
+function UserView({view, setView}) {
+    if (typeof view.like === "undefined") {
+        return (
+            <div className={styles.ViewContainer}>
+                <h2>Welcome! <br/>Click Left menu items</h2>
+            </div>
+        )
+    }
+    return (
+        <div className={styles.ViewContainer}>
+            <ViewHeader>
+                <Title>{view.title}</Title>
+            </ViewHeader>
+
+            <ViewContent>
+
+                {/* Image */}
+                <UserImage src={view.imageUrl} alt={"User Image"}/>
+
+                {/* likeCount */}
+                <LikeCountContainer>
+                    {
+                        view.like === false
+                            ? <img src={'./img/emptyHeart.png'} alt={"heart image"} width={20} height={20}/>
+                            : <img src={'./img/Heart.png'} alt={"heart image"} width={20} height={20}/>
+                    }
+                    <LikeCountTag>{view.likeCount}</LikeCountTag>
+                    {
+                        view.like === false
+                        ? <LikeButton onClick={() => onClickLikeButton(view, setView)}>like</LikeButton>
+                        : <LikeButton onClick={() => onClickLikeButton(view, setView)}>Unlike</LikeButton>
+
+                    }
+                </LikeCountContainer>
+
+                {/* Content */}
+                <Content>
+                    Content : {view.content}
+                </Content>
+
+                {/* location */}
+
+                <Content>
+                    Location : {view.location}
+                </Content>
+            </ViewContent>
         </div>
     )
 }
