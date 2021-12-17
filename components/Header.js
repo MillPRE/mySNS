@@ -1,6 +1,6 @@
-import img from "../../public/logo.jpg"
+import img from "../public/logo.jpg"
 import Image from 'next/image'
-import styles from '../../styles/Header.module.css'
+import styles from '../styles/Header.module.css'
 
 function Header({ title }) {
     return (

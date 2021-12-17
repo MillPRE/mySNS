@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useEffect, useState } from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import MainContainer from "./components/Main/MainContainer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import MainContainer from "../components/Main/MainContainer";
 
 
 const defaultData = {

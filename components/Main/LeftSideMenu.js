@@ -1,4 +1,4 @@
-import styles from '../../../styles/Main.module.css'
+import styles from '../../styles/Main.module.css'
 
 function handleCLick(user, view, setRightView, contents) {
 

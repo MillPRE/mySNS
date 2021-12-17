@@ -1,4 +1,4 @@
-import styles from '../../../styles/Main.module.css'
+import styles from '../../styles/Main.module.css'
 import LeftSideMenu from "./LeftSideMenu";
 import RightSideContent from "./RightSideContent";
 import {useEffect, useState} from "react";

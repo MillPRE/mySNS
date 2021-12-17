@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from '../../../styles/Main.module.css'
+import styles from '../../styles/Main.module.css'
 import ViewRight from './ViewRight'
 
 function RightSideContent({users,setUsers, view, setRightView}){
