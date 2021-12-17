@@ -12,14 +12,14 @@ function handleCLick(user, view, setRightView, contents) {
 }
 
 
-function LeftSideMenu({contents, view, setRightView}) {
+function LeftSideMenu({users,setUsers, view, setRightView}) {
 
 
-    const userListTag = contents.contents.map((user) => (
+    const userListTag = users.contents.map((user) => (
         <div className={styles.userListContainer}>
             <div
                 className={styles.userList}
-                onClick={()=>handleCLick(user, view, setRightView, contents.contents)}
+                onClick={()=>handleCLick(user, view, setRightView, users.contents)}
             >
                 {user.userName}
             </div>

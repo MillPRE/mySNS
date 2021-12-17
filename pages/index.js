@@ -37,6 +37,11 @@ export default function Home() {
     },[]);
     /* 이후 user 값 변경하면 안됨.*/
 
+
+    useEffect(()=>{
+        console.log("users",users);
+    },[users])
+
     return (
       <div className={styles.Container}>
         <Head>
@@ -46,7 +51,7 @@ export default function Home() {
           <Header title={users.title}/>
 
           {/* Main */}
-          <MainContainer contents={users} setContents={setUsers} length={users.contents.length}>
+          <MainContainer users={users} setUsers={setUsers} length={users.contents.length}>
           </MainContainer>
 
           {/* footer */}

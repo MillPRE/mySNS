@@ -1,5 +1,6 @@
 import styles from "../../../styles/Main.module.css";
 import styled from 'styled-components';
+import {useEffect} from "react";
 
 const Title = styled.h1`
     font-size : 30px;
@@ -101,25 +102,27 @@ function FalseView({view, setView}){
     )
 }
 
-function onClickLikeButton(view,setView) {
-    let tempView = view;
+function onClickLikeButton(view,setView, users, setUsers) {
+    let tempView = {...view};
+    console.log(view);
+
     if( view.like === false ){
-    //    like button 누름.
+        //    like button 누름.
         tempView.like = true;
-        tempView.likeCount += 1;
+        let tmpCount = tempView.likeCount + 1;
+        tempView["likeCount"] = tmpCount;
     }
     else{
-    //    unlike button 누름
+        //    unlike button 누름
         tempView.like = false;
-        tempView.likeCount -= 1;
+        let tmpCount = tempView.likeCount - 1;
+        tempView["likeCount"] = tmpCount;
     }
-
     setView({...tempView});
-
+    // state는 비동기
 }
 
-
-function UserView({view, setView}) {
+function UserView({view, setView, users, setUsers}) {
     if (typeof view.like === "undefined") {
         return (
             <div className={styles.ViewContainer}>
@@ -148,8 +151,8 @@ function UserView({view, setView}) {
                     <LikeCountTag>{view.likeCount}</LikeCountTag>
                     {
                         view.like === false
-                        ? <LikeButton onClick={() => onClickLikeButton(view, setView)}>like</LikeButton>
-                        : <LikeButton onClick={() => onClickLikeButton(view, setView)}>Unlike</LikeButton>
+                        ? <LikeButton onClick={() => onClickLikeButton(view, setView, users, setUsers)}>like</LikeButton>
+                        : <LikeButton onClick={() => onClickLikeButton(view, setView, users, setUsers)}>Unlike</LikeButton>
 
                     }
                 </LikeCountContainer>
